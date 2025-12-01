@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfólio | TailwindCSS</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+        <style>
+            :root{
+                --bg-gradient: linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);
+            }
+            *{box-sizing:border-box}
+            body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial; margin:0; -webkit-font-smoothing:antialiased}
+            .bodoni-moda{font-family:"Bodoni Moda",serif;font-weight:400}
+            .parallax-container{
+                height:100vh; background:var(--bg-gradient); background-attachment:fixed;
+                position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; color:#fff;
+            }
+
+            /* SVG turbulence filter will be applied to this layer */
+            .parallax-bg{
+                position:absolute; width:120%; height:120%; top:-10%; left:-10%;
+                pointer-events:none; will-change:transform,filter; transform-origin:center;
+                filter: blur(0px) saturate(1) brightness(1);
+            }
+
+            .shape{position:absolute;border-radius:50%;opacity:.12;will-change:transform,opacity}
+            .shape-1{width:340px;height:340px;background:#fff;top:-120px;left:-120px}
+            .shape-2{width:220px;height:220px;background:#fff;bottom:-60px;right:12%}
+            .shape-3{width:160px;height:160px;background:#fff;top:48%;right:6%}
+
+            .parallax-content{position:relative;z-index:10;text-align:center;padding:0 20px}
+            .parallax-content h1{font-size:4.5rem;font-weight:900;text-shadow:3px 3px 15px rgba(0,0,0,.4);margin:0 0 12px;transform-origin:center}
+            .parallax-content p{font-size:1.25rem;text-shadow:2px 2px 10px rgba(0,0,0,.3);margin:0 0 18px}
+
+            /* cinematic bars */
+            .cinematic-top,.cinematic-bottom{
+                position:fixed;left:0;right:0;height:18vh;background:#020202;z-index:9998;pointer-events:none;
+                transform:translateY(-100%);will-change:transform
+            }
+            .cinematic-bottom{bottom:0;transform:translateY(100%)}
+
+            .scroll-indicator{
+                position:absolute;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;
+                z-index:10;display:inline-flex;align-items:center;justify-content:center;margin-top:60px;
+                width:56px;height:56px;border-radius:999px;background:rgba(255,255,255,.12);backdrop-filter:blur(4px);
+                transition:transform .18s ease,color .18s ease; color:#fff; text-decoration:none;
+            }
+            .scroll-indicator:hover{transform:translateX(-50%) translateY(-6px);background:rgba(255,255,255,.18)}
+            @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+
+            .project-img{width:100%;height:180px;object-fit:cover;display:block}
+            @media (max-width:600px){.parallax-content h1{font-size:2.25rem}.parallax-content p{font-size:1rem}.cinematic-top,.cinematic-bottom{height:14vh}}
+            .card {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border: none;
+                border-radius: 12px;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            }
+        </style>
+    </head>
+    <body>
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+           <div class="container-fluid"><a class="navbar-brand" href="#">Meu Portfólio</a></div>
+       </nav>
+
+
+       <!-- SVG filter for turbulence/displacement (hidden but usable via CSS filter:url(#turb)) -->
+       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+           <filter id="turb">
+               <feTurbulence id="feTurb" baseFrequency="0.001 0.002" numOctaves="3" seed="2" stitchTiles="stitch"/>
+               <feDisplacementMap id="feDisp" in="SourceGraphic" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+           </filter>
+       </svg>
+
+      <div class="parallax-container">
+          <div class="parallax-bg" aria-hidden="true" style="filter:url(#turb) blur(0px) saturate(1) brightness(1);">
+              <div class="shape shape-1"></div>
+              <div class="shape shape-2"></div>
+              <div class="shape shape-3"></div>
+          </div>
+
+          <div class="parallax-content" aria-hidden="false">
+              <h1 class="bodoni-moda">Criatividade em Movimento</h1>
+              <p>Experiências digitais que transcendem expectativas</p>
+
+              <a href="#portfolio" class="scroll-indicator" aria-label="Ir para o portfólio" id="scrollToPortfolio">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 5v14"></path>
+                      <path d="M5 12l7 7 7-7"></path>
+                  </svg>
+              </a>
+          </div>
+      </div>
+
+       <div class="container my-5" id="portfolio">
+           <div class="row">
+               <div class="col-md-8">
+                  <h2 class="bodoni-moda">Sobre Mim</h2>
+                  <p>Sou Daniel! Um garoto de 18 anos extremamente interessado em design, animações e 3D. Atualmente estudo no Senai Suíço-Brasileira, e estou desenvolvendo projetos Web, Back-end e Banco de dados</p>
+               </div>
+           </div>
+
+           <div class="row mt-5 gx-4 gy-4">
+               <div class="col-md-4 mb-3">
+                   <div class="card">
+                       <img src="login-page.png" class="project-img" alt="Projeto 1 — interface de dashboard">
+                       <div class="card-body">
+                           <h5 class="card-title">Projeto 1</h5>
+                           <p class="card-text">Meu primeiro projeto utilizando Three.js!</p>
+                           <a href="https://github.com/danielmacielbenicio/LOGIN-PAGE.git" target="_blank"  class="btn btn-primary">Ver mais</a>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-4 mb-3">
+                   <div class="card">
+                       <img src="oceanflix.png" class="project-img" alt="Projeto 2 — oceanflix">
+                       <div class="card-body">
+                           <h5 class="card-title">Projeto 2</h5>
+                           <p class="card-text">Página teste, com uso de Vanilla-tilt e composições AMV.</p>
+                           <a href="https://danielmacielbenicio.github.io/oceanflix/" class="btn btn-primary">Ver mais</a>
+                       </div>
+                       
+                   </div>
+               </div>
+                  <div class="col-md-4 mb-3">
+                   <div class="card">
+                       <img src="github.png" class="project-img" alt="Projeto 3 — app móvel">
+                       <div class="card-body">
+                           <h5 class="card-title">Projeto 3</h5>
+                           <p class="card-text">Projeto utilizando API - CRUD em Java.</p>
+                           <a href="https://github.com/danielmacielbenicio/To-Do-List" class="btn btn-primary">Ver mais</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+        <script>
+            gsap.registerPlugin(ScrollTrigger);
+
+            const el = {
+                shapes: document.querySelectorAll('.shape'),
+                parallaxBg: document.querySelector('.parallax-bg'),
+                feTurb: document.getElementById('feTurb'),
+                feDisp: document.getElementById('feDisp'),
+                cards: document.querySelectorAll('.card'),
+                scrollBtn: document.getElementById('scrollToPortfolio'),
+            };
+
+            // Lock/unlock scroll for intro
+            const lockScroll = () => { document.documentElement.style.overflow = 'hidden'; document.body.style.touchAction = 'none'; };
+            const unlockScroll = () => { document.documentElement.style.overflow = ''; document.body.style.touchAction = ''; };
+
+            // cinematic intro
+            function cinematicIntro(){
+                lockScroll();
+                const tl = gsap.timeline({ defaults:{ease:'power2.inOut'}, onComplete:unlockScroll });
+
+                tl.addLabel('covered').to({}, { duration: 0.14 });
+
+                // subtle zoom and reveal while covered
+                tl.fromTo(el.parallaxBg, { scale:1.06 }, { scale:1, duration:1.05, ease:'power3.out' }, 'covered+=0.02');
+
+                // content reveal
+                tl.from('.parallax-content h1',{ y:48, opacity:0, duration:0.9, ease:'power4.out' }, 'covered+=0.18');
+                tl.from('.parallax-content p',{ y:28, opacity:0, duration:0.8, ease:'power3.out' }, 'covered+=0.32');
+                tl.from(el.shapes, { y:30, scale:0.6, opacity:0, duration:0.9, ease:'sine.out', stagger:0.06 }, 'covered+=0.2');
+
+                // arrow pop
+                tl.fromTo(el.scrollBtn, { scale:0.9, opacity:0 }, { scale:1, opacity:1, duration:0.6, ease:'back.out(1.4)' }, '-=0.15');
+            }
+
+            // continuous gentle float of shapes
+            gsap.to('.shape-1',{ y:-40, rotation:20, duration:8, ease:'sine.inOut', repeat:-1, yoyo:true });
+            gsap.to('.shape-2',{ y:-30, rotation:-30, duration:10, ease:'sine.inOut', repeat:-1, yoyo:true, delay:1 });
+            gsap.to('.shape-3',{ y:-20, rotation:15, duration:12, ease:'sine.inOut', repeat:-1, yoyo:true, delay:2 });
+
+            // parallax move + blur on scroll
+            gsap.to(el.parallaxBg, {
+                yPercent: 20, ease:'none',
+                scrollTrigger: { trigger:'.parallax-container', start:'top top', end:'bottom top', scrub:true }
+            });
+            gsap.to(el.parallaxBg, {
+                filter: 'url(#turb) blur(6px) saturate(.95) brightness(.92)', ease:'none',
+                scrollTrigger: { trigger:'.parallax-container', start:'top top', end:'bottom top', scrub:true }
+            });
+
+            // animate SVG turbulence baseFrequency and displacement scale on scroll
+            gsap.to({}, { // dummy target to drive both attr tweens synchronously
+                scrollTrigger: {
+                    trigger: '.parallax-container',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                onUpdate(self){
+                    // progress 0..1
+                    const p = self.progress;
+                    // compute baseFrequency and scale (adjust mapping to taste)
+                    const baseX = 0.001 + p * 0.06; // 0.001 -> ~0.061
+                    const baseY = 0.002 + p * 0.02; // 0.002 -> ~0.022
+                    const scale = Math.round(p * 32); // 0 -> 32
+                    el.feTurb.setAttribute('baseFrequency', `${baseX} ${baseY}`);
+                    el.feDisp.setAttribute('scale', scale);
+                }
+            });
+
+            // reveal project cards
+            gsap.from(el.cards, {
+                opacity:0, y:30, duration:0.8, stagger:0.15, ease:'power3.out',
+                scrollTrigger:{ trigger:'#portfolio', start:'top 85%', end:'bottom 60%', toggleActions:'play none none reverse' }
+            });
+
+            // smooth scroll arrow
+            el.scrollBtn.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector('#portfolio').scrollIntoView({ behavior:'smooth' });
+            }, { passive:true });
+        </script>
+    </body>
+</html>
